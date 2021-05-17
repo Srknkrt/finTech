@@ -257,6 +257,7 @@ namespace finTech
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegister_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

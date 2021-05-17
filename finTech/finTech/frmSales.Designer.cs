@@ -38,11 +38,11 @@ namespace finTech
             this.txbPrice = new System.Windows.Forms.TextBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.dgvMyProductForSale = new System.Windows.Forms.DataGridView();
-            this.btnHome = new System.Windows.Forms.Button();
             this.CItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CItemMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnHome = new System.Windows.Forms.Button();
             this.lblMyProductForSale = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyProductForSale)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +76,7 @@ namespace finTech
             this.cmbProduct.Location = new System.Drawing.Point(297, 97);
             this.cmbProduct.Name = "cmbProduct";
             this.cmbProduct.Size = new System.Drawing.Size(136, 28);
-            this.cmbProduct.TabIndex = 26;
+            this.cmbProduct.TabIndex = 1;
             this.cmbProduct.SelectedIndexChanged += new System.EventHandler(this.cmbProduct_SelectedIndexChanged);
             // 
             // lblItemAmount
@@ -96,7 +96,7 @@ namespace finTech
             this.txbItemAmount.Location = new System.Drawing.Point(297, 131);
             this.txbItemAmount.Name = "txbItemAmount";
             this.txbItemAmount.Size = new System.Drawing.Size(136, 26);
-            this.txbItemAmount.TabIndex = 27;
+            this.txbItemAmount.TabIndex = 2;
             // 
             // btnAdd
             // 
@@ -106,7 +106,7 @@ namespace finTech
             this.btnAdd.Location = new System.Drawing.Point(297, 195);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(136, 28);
-            this.btnAdd.TabIndex = 29;
+            this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -117,7 +117,7 @@ namespace finTech
             this.txbPrice.Location = new System.Drawing.Point(297, 163);
             this.txbPrice.Name = "txbPrice";
             this.txbPrice.Size = new System.Drawing.Size(136, 26);
-            this.txbPrice.TabIndex = 31;
+            this.txbPrice.TabIndex = 3;
             // 
             // lblPrice
             // 
@@ -148,19 +148,6 @@ namespace finTech
             this.dgvMyProductForSale.Size = new System.Drawing.Size(403, 139);
             this.dgvMyProductForSale.TabIndex = 34;
             // 
-            // btnHome
-            // 
-            this.btnHome.BackColor = System.Drawing.SystemColors.Control;
-            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnHome.ForeColor = System.Drawing.Color.Maroon;
-            this.btnHome.Location = new System.Drawing.Point(12, 464);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(136, 28);
-            this.btnHome.TabIndex = 36;
-            this.btnHome.Text = "Home";
-            this.btnHome.UseVisualStyleBackColor = false;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
             // CItemID
             // 
             this.CItemID.DataPropertyName = "ItemID";
@@ -188,6 +175,19 @@ namespace finTech
             this.CItemMoney.HeaderText = "ItemMoney";
             this.CItemMoney.Name = "CItemMoney";
             this.CItemMoney.ReadOnly = true;
+            // 
+            // btnHome
+            // 
+            this.btnHome.BackColor = System.Drawing.SystemColors.Control;
+            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnHome.ForeColor = System.Drawing.Color.Maroon;
+            this.btnHome.Location = new System.Drawing.Point(12, 464);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(136, 28);
+            this.btnHome.TabIndex = 5;
+            this.btnHome.Text = "Home";
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // lblMyProductForSale
             // 
@@ -223,6 +223,7 @@ namespace finTech
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sales";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSales_FormClosed);
             this.Load += new System.EventHandler(this.frmSales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyProductForSale)).EndInit();
             this.ResumeLayout(false);

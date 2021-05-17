@@ -41,11 +41,11 @@ namespace finTech
             this.lblAdmin = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
             this.dgvWaitingForMoneyApproval = new System.Windows.Forms.DataGridView();
-            this.btnConfirmItem = new System.Windows.Forms.Button();
             this.CMoneyID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMUserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMoneyAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnConfirmItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingForProductApproval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingForMoneyApproval)).BeginInit();
             this.SuspendLayout();
@@ -164,19 +164,6 @@ namespace finTech
             this.dgvWaitingForMoneyApproval.Size = new System.Drawing.Size(446, 145);
             this.dgvWaitingForMoneyApproval.TabIndex = 38;
             // 
-            // btnConfirmItem
-            // 
-            this.btnConfirmItem.BackColor = System.Drawing.SystemColors.Control;
-            this.btnConfirmItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnConfirmItem.ForeColor = System.Drawing.Color.Maroon;
-            this.btnConfirmItem.Location = new System.Drawing.Point(25, 266);
-            this.btnConfirmItem.Name = "btnConfirmItem";
-            this.btnConfirmItem.Size = new System.Drawing.Size(142, 39);
-            this.btnConfirmItem.TabIndex = 39;
-            this.btnConfirmItem.Text = "Confirm Item";
-            this.btnConfirmItem.UseVisualStyleBackColor = false;
-            this.btnConfirmItem.Click += new System.EventHandler(this.btnConfirmItem_Click);
-            // 
             // CMoneyID
             // 
             this.CMoneyID.DataPropertyName = "MoneyID";
@@ -201,6 +188,19 @@ namespace finTech
             this.CMoneyAmount.HeaderText = "MoneyAmount";
             this.CMoneyAmount.Name = "CMoneyAmount";
             // 
+            // btnConfirmItem
+            // 
+            this.btnConfirmItem.BackColor = System.Drawing.SystemColors.Control;
+            this.btnConfirmItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnConfirmItem.ForeColor = System.Drawing.Color.Maroon;
+            this.btnConfirmItem.Location = new System.Drawing.Point(25, 266);
+            this.btnConfirmItem.Name = "btnConfirmItem";
+            this.btnConfirmItem.Size = new System.Drawing.Size(142, 39);
+            this.btnConfirmItem.TabIndex = 39;
+            this.btnConfirmItem.Text = "Confirm Item";
+            this.btnConfirmItem.UseVisualStyleBackColor = false;
+            this.btnConfirmItem.Click += new System.EventHandler(this.btnConfirmItem_Click);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +219,7 @@ namespace finTech
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admin";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAdmin_FormClosed);
             this.Load += new System.EventHandler(this.frmAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingForProductApproval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingForMoneyApproval)).EndInit();
