@@ -20,10 +20,7 @@ namespace finTech
         private int itemID;
         //Kullanicinin toplam parasi degiskende tutuldu.
         private int moneyTotal;
-        //Sql'e yeni baglanti kuruldu.
-        SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
-        //Sql'e yeni komut olusturuldu.
-        SqlCommand cmd = new SqlCommand();
+        
         //Veriyi okuyucu olusturuldu.
         SqlDataReader dr;
 
@@ -39,6 +36,8 @@ namespace finTech
 
         private void ProductUpdate()
         {
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand();
             //ItemName bulma komutu olusturuldu.
             cmd.CommandText = "SELECT I.ItemName FROM tblItems I";
             //Sql'e baglanti saglandi.
@@ -59,8 +58,12 @@ namespace finTech
 
         private void DgvProductUpdate()
         {
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand();
             //Sql baglantisi acildi.
             con.Open();
+            //Sql'e baglanti saglandi.
+            cmd.Connection = con;
             //Kullanici pazardaki tum urunleri bulma komutu olusturuldu.
             cmd.CommandText = "SELECT U.UserID, U.Name, I.ItemID, I.ItemName, UI.ItemAmount, UI.ItemMoney " +
                               "FROM tblUserItems UI INNER JOIN tblUsers U ON UI.UserID=U.UserID " +
@@ -86,6 +89,8 @@ namespace finTech
 
         private void GoHome()
         {
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand();
             //FormHome olusturuldu.
             frmHome formHome = new frmHome();
             //Kullanicinin admin tipinde olup olmadigini bulan komut yazildi.
@@ -111,6 +116,8 @@ namespace finTech
 
         private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand();
             //Secilen urune gore itemID bulma komutu olusturuldu.
             cmd.CommandText = "SELECT I.ItemID FROM tblItems I WHERE I.ItemName = '" +
                                                                     cmbProduct.Text + "'";
@@ -149,6 +156,8 @@ namespace finTech
 
         private void DgvMyMoneyAmountUpdate()
         {
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand();
             //Kullanicinin toplam parasini bulma komutu olusturuldu.
             cmd.CommandText = "SELECT SUM(M.MoneyAmount) AS 'MoneyTotal' FROM tblMoneys M " +
                               "WHERE M.UserID = '" + this.userID + "' AND M.MoneyAdminConfirm = 'True'";
@@ -207,18 +216,21 @@ namespace finTech
 
         private void MoneyAdd()
         {
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand();
             try
             {
-                //Yeni para ekleme komutu olusturuldu.
-                cmd.CommandText = cmmdStr;
-                //Sql'e baglanti saglandi.
-                cmd.Connection = con;
                 //Sql baglantisi acildi.
                 con.Open();
+                //Yeni para ekleme komutu olusturuldu.
+                cmd.CommandText = "INSERT INTO tblMoneys (UserID, MoneyAmount, MoneyAdminConfirm) " +
+                                                "VALUES (@userid,@money,@Adminconfirm)";
+                //Sql'e baglanti saglandi.
+                cmd.Connection = con;
                 //Sql de tutulan tblMoneys tablosuna bilgiler atandi.
-                cmd.Parameters.AddWithValue("UserID", this.userID);
-                cmd.Parameters.AddWithValue("MoneyAmount", txbMoneyAmount.Text);
-                cmd.Parameters.AddWithValue("MoneyAdminConfirm", 0);
+                cmd.Parameters.AddWithValue("useriD", this.userID);
+                cmd.Parameters.AddWithValue("money", txbMoneyAmount.Text);
+                cmd.Parameters.AddWithValue("Adminconfirm", 0);
                 //Komut calistirildi.
                 cmd.ExecuteNonQuery();
                 //Sql'e baglanti kapatildi.
@@ -241,6 +253,8 @@ namespace finTech
 
         private void BuyFunc()
         {
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand();
             //Satin alma ile ilgili degiskenler olusturuldu.
             int itemAmountTotal = 0, itemAmountMarket = 0, itemAmountWanted;
             int userItemID = 0, sellerUserID = 0, itemMoney = 0;
