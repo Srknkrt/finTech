@@ -33,6 +33,7 @@ namespace finTech
             this.btnSellScreen = new System.Windows.Forms.Button();
             this.btnPurchaseScreen = new System.Windows.Forms.Button();
             this.btnAdmin = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblLogin
@@ -51,9 +52,9 @@ namespace finTech
             this.btnSellScreen.BackColor = System.Drawing.SystemColors.Control;
             this.btnSellScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnSellScreen.ForeColor = System.Drawing.Color.Maroon;
-            this.btnSellScreen.Location = new System.Drawing.Point(51, 134);
+            this.btnSellScreen.Location = new System.Drawing.Point(28, 129);
             this.btnSellScreen.Name = "btnSellScreen";
-            this.btnSellScreen.Size = new System.Drawing.Size(293, 168);
+            this.btnSellScreen.Size = new System.Drawing.Size(205, 55);
             this.btnSellScreen.TabIndex = 7;
             this.btnSellScreen.Text = "Sales Screen";
             this.btnSellScreen.UseVisualStyleBackColor = false;
@@ -64,9 +65,9 @@ namespace finTech
             this.btnPurchaseScreen.BackColor = System.Drawing.SystemColors.Control;
             this.btnPurchaseScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnPurchaseScreen.ForeColor = System.Drawing.Color.Maroon;
-            this.btnPurchaseScreen.Location = new System.Drawing.Point(350, 134);
+            this.btnPurchaseScreen.Location = new System.Drawing.Point(443, 129);
             this.btnPurchaseScreen.Name = "btnPurchaseScreen";
-            this.btnPurchaseScreen.Size = new System.Drawing.Size(293, 168);
+            this.btnPurchaseScreen.Size = new System.Drawing.Size(205, 55);
             this.btnPurchaseScreen.TabIndex = 8;
             this.btnPurchaseScreen.Text = "Receiving Screen";
             this.btnPurchaseScreen.UseVisualStyleBackColor = false;
@@ -77,13 +78,26 @@ namespace finTech
             this.btnAdmin.BackColor = System.Drawing.SystemColors.Control;
             this.btnAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAdmin.ForeColor = System.Drawing.Color.Maroon;
-            this.btnAdmin.Location = new System.Drawing.Point(51, 308);
+            this.btnAdmin.Location = new System.Drawing.Point(236, 337);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(592, 50);
+            this.btnAdmin.Size = new System.Drawing.Size(205, 55);
             this.btnAdmin.TabIndex = 9;
             this.btnAdmin.Text = "Admin";
             this.btnAdmin.UseVisualStyleBackColor = false;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
+            // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.SystemColors.Control;
+            this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnReport.ForeColor = System.Drawing.Color.Maroon;
+            this.btnReport.Location = new System.Drawing.Point(236, 223);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(205, 55);
+            this.btnReport.TabIndex = 10;
+            this.btnReport.Text = "Report Screen";
+            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // frmHome
             // 
@@ -91,6 +105,7 @@ namespace finTech
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SpringGreen;
             this.ClientSize = new System.Drawing.Size(694, 428);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnPurchaseScreen);
             this.Controls.Add(this.btnSellScreen);
@@ -114,5 +129,6 @@ namespace finTech
         private System.Windows.Forms.Button btnSellScreen;
         private System.Windows.Forms.Button btnPurchaseScreen;
         private System.Windows.Forms.Button btnAdmin;
+        private System.Windows.Forms.Button btnReport;
     }
 }

@@ -30,8 +30,6 @@ namespace finTech
         private void InitializeComponent()
         {
             this.lblReceiving = new System.Windows.Forms.Label();
-            this.dgvMyMoneyAmount = new System.Windows.Forms.DataGridView();
-            this.CMoneyAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txbMoneyAmount = new System.Windows.Forms.TextBox();
             this.lblMoneyAmount = new System.Windows.Forms.Label();
@@ -49,7 +47,10 @@ namespace finTech
             this.CItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CItemMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBuy = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMyMoneyAmount)).BeginInit();
+            this.lblMyMoneyAmount = new System.Windows.Forms.Label();
+            this.chbSetPrice = new System.Windows.Forms.CheckBox();
+            this.txbSetPrice = new System.Windows.Forms.TextBox();
+            this.cmbMoney = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductMarket)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,34 +65,12 @@ namespace finTech
             this.lblReceiving.TabIndex = 12;
             this.lblReceiving.Text = "Receiving";
             // 
-            // dgvMyMoneyAmount
-            // 
-            this.dgvMyMoneyAmount.BackgroundColor = System.Drawing.Color.Peru;
-            this.dgvMyMoneyAmount.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgvMyMoneyAmount.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dgvMyMoneyAmount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMyMoneyAmount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CMoneyAmount});
-            this.dgvMyMoneyAmount.Location = new System.Drawing.Point(12, 208);
-            this.dgvMyMoneyAmount.Name = "dgvMyMoneyAmount";
-            this.dgvMyMoneyAmount.ReadOnly = true;
-            this.dgvMyMoneyAmount.RowHeadersVisible = false;
-            this.dgvMyMoneyAmount.Size = new System.Drawing.Size(136, 71);
-            this.dgvMyMoneyAmount.TabIndex = 35;
-            // 
-            // CMoneyAmount
-            // 
-            this.CMoneyAmount.DataPropertyName = "MoneyTotal";
-            this.CMoneyAmount.HeaderText = "MoneyAmount";
-            this.CMoneyAmount.Name = "CMoneyAmount";
-            this.CMoneyAmount.ReadOnly = true;
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAdd.ForeColor = System.Drawing.Color.Maroon;
-            this.btnAdd.Location = new System.Drawing.Point(12, 164);
+            this.btnAdd.Location = new System.Drawing.Point(12, 196);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(136, 28);
             this.btnAdd.TabIndex = 38;
@@ -135,7 +114,7 @@ namespace finTech
             // 
             this.cmbProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.cmbProduct.FormattingEnabled = true;
-            this.cmbProduct.Location = new System.Drawing.Point(253, 357);
+            this.cmbProduct.Location = new System.Drawing.Point(283, 357);
             this.cmbProduct.Name = "cmbProduct";
             this.cmbProduct.Size = new System.Drawing.Size(136, 28);
             this.cmbProduct.TabIndex = 41;
@@ -146,7 +125,7 @@ namespace finTech
             this.lblProduct.AutoSize = true;
             this.lblProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblProduct.ForeColor = System.Drawing.Color.Navy;
-            this.lblProduct.Location = new System.Drawing.Point(172, 360);
+            this.lblProduct.Location = new System.Drawing.Point(202, 360);
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(76, 20);
             this.lblProduct.TabIndex = 40;
@@ -155,7 +134,7 @@ namespace finTech
             // txbItemAmount
             // 
             this.txbItemAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txbItemAmount.Location = new System.Drawing.Point(544, 357);
+            this.txbItemAmount.Location = new System.Drawing.Point(643, 357);
             this.txbItemAmount.Name = "txbItemAmount";
             this.txbItemAmount.Size = new System.Drawing.Size(136, 26);
             this.txbItemAmount.TabIndex = 42;
@@ -165,7 +144,7 @@ namespace finTech
             this.lblItemAmount.AutoSize = true;
             this.lblItemAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblItemAmount.ForeColor = System.Drawing.Color.Navy;
-            this.lblItemAmount.Location = new System.Drawing.Point(395, 360);
+            this.lblItemAmount.Location = new System.Drawing.Point(494, 360);
             this.lblItemAmount.Name = "lblItemAmount";
             this.lblItemAmount.Size = new System.Drawing.Size(143, 20);
             this.lblItemAmount.TabIndex = 43;
@@ -249,7 +228,7 @@ namespace finTech
             this.btnBuy.BackColor = System.Drawing.SystemColors.Control;
             this.btnBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnBuy.ForeColor = System.Drawing.Color.Maroon;
-            this.btnBuy.Location = new System.Drawing.Point(384, 401);
+            this.btnBuy.Location = new System.Drawing.Point(643, 403);
             this.btnBuy.Name = "btnBuy";
             this.btnBuy.Size = new System.Drawing.Size(136, 28);
             this.btnBuy.TabIndex = 46;
@@ -257,12 +236,63 @@ namespace finTech
             this.btnBuy.UseVisualStyleBackColor = false;
             this.btnBuy.Click += new System.EventHandler(this.btnBuy_Click);
             // 
+            // lblMyMoneyAmount
+            // 
+            this.lblMyMoneyAmount.AutoSize = true;
+            this.lblMyMoneyAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblMyMoneyAmount.ForeColor = System.Drawing.Color.Navy;
+            this.lblMyMoneyAmount.Location = new System.Drawing.Point(15, 227);
+            this.lblMyMoneyAmount.Name = "lblMyMoneyAmount";
+            this.lblMyMoneyAmount.Size = new System.Drawing.Size(44, 20);
+            this.lblMyMoneyAmount.TabIndex = 47;
+            this.lblMyMoneyAmount.Text = "0 TL";
+            // 
+            // chbSetPrice
+            // 
+            this.chbSetPrice.AutoSize = true;
+            this.chbSetPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.chbSetPrice.ForeColor = System.Drawing.Color.Navy;
+            this.chbSetPrice.Location = new System.Drawing.Point(176, 403);
+            this.chbSetPrice.Name = "chbSetPrice";
+            this.chbSetPrice.Size = new System.Drawing.Size(106, 24);
+            this.chbSetPrice.TabIndex = 48;
+            this.chbSetPrice.Text = "Set Price:";
+            this.chbSetPrice.UseVisualStyleBackColor = true;
+            this.chbSetPrice.CheckedChanged += new System.EventHandler(this.chbSetPrice_CheckedChanged);
+            // 
+            // txbSetPrice
+            // 
+            this.txbSetPrice.Enabled = false;
+            this.txbSetPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txbSetPrice.Location = new System.Drawing.Point(283, 403);
+            this.txbSetPrice.Name = "txbSetPrice";
+            this.txbSetPrice.Size = new System.Drawing.Size(136, 26);
+            this.txbSetPrice.TabIndex = 49;
+            // 
+            // cmbMoney
+            // 
+            this.cmbMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.cmbMoney.FormattingEnabled = true;
+            this.cmbMoney.Items.AddRange(new object[] {
+            "TurkLirasi",
+            "Sterlin",
+            "IsvicreFranki",
+            "Euro"});
+            this.cmbMoney.Location = new System.Drawing.Point(12, 153);
+            this.cmbMoney.Name = "cmbMoney";
+            this.cmbMoney.Size = new System.Drawing.Size(136, 28);
+            this.cmbMoney.TabIndex = 50;
+            // 
             // frmReceiving
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SpringGreen;
             this.ClientSize = new System.Drawing.Size(799, 523);
+            this.Controls.Add(this.cmbMoney);
+            this.Controls.Add(this.txbSetPrice);
+            this.Controls.Add(this.chbSetPrice);
+            this.Controls.Add(this.lblMyMoneyAmount);
             this.Controls.Add(this.btnBuy);
             this.Controls.Add(this.lblProductMarket);
             this.Controls.Add(this.dgvProductMarket);
@@ -274,7 +304,6 @@ namespace finTech
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txbMoneyAmount);
             this.Controls.Add(this.lblMoneyAmount);
-            this.Controls.Add(this.dgvMyMoneyAmount);
             this.Controls.Add(this.lblReceiving);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -284,7 +313,6 @@ namespace finTech
             this.Text = "Receiving";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmReceiving_FormClosed);
             this.Load += new System.EventHandler(this.frmReceiving_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMyMoneyAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductMarket)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -294,7 +322,6 @@ namespace finTech
         #endregion
 
         private System.Windows.Forms.Label lblReceiving;
-        private System.Windows.Forms.DataGridView dgvMyMoneyAmount;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txbMoneyAmount;
         private System.Windows.Forms.Label lblMoneyAmount;
@@ -312,6 +339,9 @@ namespace finTech
         private System.Windows.Forms.DataGridViewTextBoxColumn CItemAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn CItemMoney;
         private System.Windows.Forms.Button btnBuy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CMoneyAmount;
+        private System.Windows.Forms.Label lblMyMoneyAmount;
+        private System.Windows.Forms.CheckBox chbSetPrice;
+        private System.Windows.Forms.TextBox txbSetPrice;
+        private System.Windows.Forms.ComboBox cmbMoney;
     }
 }

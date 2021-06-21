@@ -57,6 +57,17 @@ namespace finTech
             this.Hide();
         }
 
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            //FormReport olusturuldu.
+            frmReport formReport = new frmReport();
+            //FormReceiving'e userID degeri gonderildi.
+            formReport.userID = this.userID;
+            //FormAdmin ekranina gecis yapildi.
+            formReport.Show();
+            this.Hide();
+        }
+
         private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
         {
             //Cikis islemi saglandi.

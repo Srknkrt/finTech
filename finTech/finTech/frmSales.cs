@@ -12,14 +12,14 @@ namespace finTech
             InitializeComponent();
         }
         //Sql'e sorgu yazma stringi.
-        private string cmmdStr = "INSERT INTO tblUserItems (UserID, ItemID, ItemAmount," +
-                                                           "ItemMoney, ItemAdminConfirm) " +
-                                                   "VALUES (@UserID,@ItemID,@ItemAmount," +
-                                                           "@ItemMoney,@ItemAdminConfirm)";
+        private string cmmdStr = "INSERT INTO tblUserItems (UserID, ItemID, ItemAmount, ItemMoney, ItemAdminConfirm) " +
+                                                  "VALUES (@UserID,@ItemID,@ItemAmount,@ItemMoney,@ItemAdminConfirm)";
         //Kullanicinin userID'si diger formlara aktarilmasi icin public olusturuldu.
         public int userID;
         //Satma isleminde itemin id'si tutulmasi icin degisken olusturuldu.
         private int itemID;
+
+
         //Sql'e yeni baglanti kuruldu.
         SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
         //Sql'e yeni komut olusturuldu.
@@ -35,6 +35,11 @@ namespace finTech
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //Sql'e yeni baglanti kuruldu.
+            SqlConnection con = new SqlConnection(@"Data Source=.\;Initial Catalog=finTech;Integrated Security=True");
+            //Sql'e yeni komut olusturuldu.
+            SqlCommand cmd = new SqlCommand();
+
             try
             {
                 //tblUserItems tablosunu dolduracak komut yazildi.
@@ -53,6 +58,7 @@ namespace finTech
                 cmd.ExecuteNonQuery();
                 //Sql'e baglanti kapatildi.
                 con.Close();
+
                 MessageBox.Show("Add successful.\nApproval is pending.");
             }
             catch (Exception ex)
