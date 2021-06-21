@@ -121,6 +121,19 @@ namespace finTech
             //Sql'e yeni komut olusturuldu.
             SqlCommand cmd = new SqlCommand();
             //Veriyi okuyucu olusturuldu.
+            SqlDataReader dr;
+
+            int userItemID = 0;
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT UserItemID FROM tblUserItems " +
+                              "WHERE UserID = '" + this.SUserID + "' AND ItemID = '" + this.SItemID + "' AND ItemMoney = '" + this.SItemMoney + "'";
+            dr = cmd.ExecuteReader();
+            if(dr.Read())
+            {
+                userItemID = Convert.ToInt32(dr["UserItemID"]);
+            }
+            con.Close();
 
             if(this.itemAmount < this.SItemAmount)
             {
@@ -136,7 +149,7 @@ namespace finTech
                 cmd.ExecuteNonQuery();
                 //Saticinin urununu azaltma komutu yazildi.
                 cmd.CommandText = "UPDATE tblUserItems SET ItemAmount -= '" + this.itemAmount + "' " +
-                                  "WHERE UserItemID = '" + this.SUserItemID + "'";
+                                  "WHERE UserItemID = '" + userItemID + "'";
                 cmd.ExecuteNonQuery();
                 //Alinacak listesinden silme komutu yazildi.
                 cmd.CommandText = "DELETE FROM tblPurchaseRequests WHERE PurchaseRequestID = '" + purchaseRequestID + "'";
@@ -163,7 +176,7 @@ namespace finTech
                                   "WHERE UserID = '" + this.SUserID + "'";
                 cmd.ExecuteNonQuery();
                 //Saticinin urununu silme komutu yazildi.
-                cmd.CommandText = "DELETE FROM tblUserItems WHERE UserItemID = '" + this.SUserItemID + "'";
+                cmd.CommandText = "DELETE FROM tblUserItems WHERE UserItemID = '" + userItemID + "'";
                 cmd.ExecuteNonQuery();
                 //Alinacak listesinden silme komutu yazildi.
                 cmd.CommandText = "DELETE FROM tblPurchaseRequests WHERE PurchaseRequestID = '" + purchaseRequestID + "'";

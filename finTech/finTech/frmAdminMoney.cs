@@ -64,28 +64,38 @@ namespace finTech
 
         private int CalculateMoney(int CMoneyAmount, string CMoneyType)
         {
+            //Kurlar sitesi degiskene atandi.
             string today = "https://www.tcmb.gov.tr/kurlar/today.xml";
             XmlDocument xmlDocument = new XmlDocument();
 
             xmlDocument.Load(today);
 
-            string GBP = xmlDocument.SelectSingleNode("Tarih_Date/Currency [@Kod = 'GBP']/BanknoteBuying").InnerText;
-            string CHF = xmlDocument.SelectSingleNode("Tarih_Date/Currency [@Kod = 'CHF']/BanknoteBuying").InnerText;
-            string EUR = xmlDocument.SelectSingleNode("Tarih_Date/Currency [@Kod = 'USD']/BanknoteBuying").InnerText;
+            //Gerekli para tipleri siteden cekildi.
+            decimal GBP = Convert.ToDecimal(xmlDocument.SelectSingleNode("Tarih_Date/Currency [@Kod = 'GBP']/BanknoteBuying").InnerText);
+            decimal CHF = Convert.ToDecimal(xmlDocument.SelectSingleNode("Tarih_Date/Currency [@Kod = 'CHF']/BanknoteBuying").InnerText);
+            decimal EUR = Convert.ToDecimal(xmlDocument.SelectSingleNode("Tarih_Date/Currency [@Kod = 'USD']/BanknoteBuying").InnerText);
 
+            //Cekilen paralar int tipine donusturuldu.
+            GBP /= 10000;
+            CHF /= 10000;
+            EUR /= 10000;
 
+            GBP %= 100;
+            CHF %= 100;
+            EUR %= 100;
 
+            //Gerekli sorgularla para miktari degiskenlere atandi.
             if (CMoneyType == "Sterlin")
             {
-                CMoneyAmount *= 12;
+                CMoneyAmount *= Convert.ToInt32(GBP);
             }
             else if (CMoneyType == "IsvicreFranki")
             {
-                CMoneyAmount *= 9;
+                CMoneyAmount *= Convert.ToInt32(CHF);
             }
             else if (CMoneyType == "Euro")
             {
-                CMoneyAmount *= 10;
+                CMoneyAmount *= Convert.ToInt32(EUR);
             }
 
             return CMoneyAmount;

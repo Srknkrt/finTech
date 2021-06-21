@@ -452,9 +452,47 @@ namespace finTech
             con.Close();
 
 
-            if(control)
+            if(control && txbSetPrice.Enabled == true)
             {
-                return;
+                if (this.moneyTotal < (setPrice * setItemAmount) * 101 / 100)
+                {
+                    MessageBox.Show("Purchase failed!!!\nYou don't have enough balance.");
+                }
+                else
+                {
+                    con.Open();
+                    //Rapor olusturma komutu yazildi.
+                    cmd.CommandText = "INSERT INTO tblPurchaseRequests (UserID, ItemID, SetAmount, SetPrice)" +
+                                                              "VALUES (@UserID,@ItemID,@SetAmount,@SetPrice)";
+                    cmd.Parameters.AddWithValue("UserID", this.userID);
+                    cmd.Parameters.AddWithValue("ItemID", this.itemID);
+                    cmd.Parameters.AddWithValue("SetAmount", setItemAmount);
+                    cmd.Parameters.AddWithValue("SetPrice", setPrice);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    con.Open();
+                    //Istek fiyat ve item idsinden satici userID'sini bulan komut yazildi.
+                    cmd.CommandText = "SELECT UI.UserID FROM tblUserItems UI " +
+                                      "WHERE UI.ItemMoney = '" + setPrice + "' AND UI.ItemID = '" + this.itemID + "'";
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        //Bulunan satici id'si degiskene atandi.
+                        sellerUserID = Convert.ToInt32(dr["UserID"]);
+
+                        //Urun miktari hesaplayan fonksiyon cagirildi.
+                        itemAmountMarket = QuantityControl(sellerUserID);
+                        //Rapor olusturma fonksiyonu cagirildi.
+                        PurchaseRequest(sellerUserID, setItemAmount, itemAmountMarket);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No product found for the price you requested.\n" +
+                                        "Your purchase will take place when there are enough products in the market.");
+                    }
+                    con.Close();
+                }
             }
             //Istek fiyat aktif ise calisan sorgu yazildi.
             else if (txbSetPrice.Enabled == true)

@@ -46,7 +46,7 @@ namespace finTech
             //Rapor olusturma komutu yazildi.
             cmd.CommandText = "SELECT ReportID, UserID, ItemID, ItemAmount, ItemMoney, History, BuyOrSell " +
                               "FROM tblReports WHERE UserID = '" + this.userID + "' AND " +
-                              "History BETWEEN '" + this.reportStartDate.ToString("MM/dd/yyyy") + "' AND '" + this.reportEndDate.ToString("MM/dd/yyyy") + "'";
+                              "History BETWEEN '" + this.reportStartDate.ToString("MM-dd-yyyy") + "' AND '" + this.reportEndDate.ToString("MM-dd-yyyy") + "'";
             //Sql'e baglanti saglandi.
             cmd.Connection = con;
             //Sql baglantisi acildi.
@@ -70,12 +70,28 @@ namespace finTech
             int StartCol = 1;
             int StartRow = 1;
 
+            //Rapor basliklari atildi.
+            Range myRange = (Range)sheet1.Cells[StartRow, StartCol + 0];
+            myRange.Value2 = "ReportID";
+            myRange = (Range)sheet1.Cells[StartRow, StartCol + 1];
+            myRange.Value2 = "UserID";
+            myRange = (Range)sheet1.Cells[StartRow, StartCol + 2];
+            myRange.Value2 = "ItemID";
+            myRange = (Range)sheet1.Cells[StartRow, StartCol + 3];
+            myRange.Value2 = "ItemAmount";
+            myRange = (Range)sheet1.Cells[StartRow, StartCol + 4];
+            myRange.Value2 = "ItemMoney";
+            myRange = (Range)sheet1.Cells[StartRow, StartCol + 5];
+            myRange.Value2 = "History";
+            myRange = (Range)sheet1.Cells[StartRow, StartCol + 6];
+            myRange.Value2 = "BuyOrSell";
+
+            //Basliklarin alti dolduruldu.
             for (int x = 0; x < dgvReports.SelectedRows.Count; x++)
             {
                 for (int j = 0; j < dgvReports.SelectedRows[x].Cells.Count; j++)
                 {
-
-                    Range myRange = (Range)sheet1.Cells[StartRow, StartCol + j];
+                    myRange = (Range)sheet1.Cells[StartRow + x + 1, StartCol + j];
                     myRange.Value2 = dgvReports.SelectedRows[x].Cells[j].Value == null ? "" : dgvReports.SelectedRows[x].Cells[j].Value;
                 }
                 StartRow++;
